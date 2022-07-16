@@ -1,0 +1,12 @@
+# A Python module written in Rust
+# osu_db_pyo3 @ file:///C:/Users/Murchik/AppData/Local/Temp/.tmpsQG6bR/osu_db_pyo3-0.1.0-cp310-none-win_amd64.whl
+
+# A tool for using PyO3 to generate a native Python module
+# link: https://github.com/PyO3/pyo3
+maturin==0.13.0
+
+# Other
+autopep8==1.6.0
+pycodestyle==2.8.0
+toml==0.10.2
+tomli==2.0.1
