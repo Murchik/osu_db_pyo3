@@ -7,19 +7,17 @@ pub struct OsudbHeader {
     pub unlocked_date: DateTime,
     pub playername: String,
     pub beatmaps_number: Int,
-    pub permissons_level: Int,
 }
 
 impl Default for OsudbHeader {
     fn default() -> Self {
         OsudbHeader {
-            version: 0,
-            folder_count: 0,
-            account_unlocked: 0,
-            unlocked_date: 0,
-            playername: "".to_string(),
-            beatmaps_number: 0,
-            permissons_level: 0,
+            version: Default::default(),
+            folder_count: Default::default(),
+            account_unlocked: Default::default(),
+            unlocked_date: Default::default(),
+            playername: Default::default(),
+            beatmaps_number: Default::default(),
         }
     }
 }

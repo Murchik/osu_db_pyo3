@@ -4,29 +4,31 @@ use crate::parser::Parser;
 
 use crate::osu_types::*;
 
-pub struct OsudbStructrure {
+pub struct Osudb {
     pub header: OsudbHeader,
     pub beatmaps: Vec<BeatmapInfo>,
+    pub permissons_level: Int,
 }
 
-pub fn read(path: String) -> OsudbStructrure {
+pub fn read(path: String) -> Osudb {
     let mut p = Parser::new();
     p.read(path);
 
-    let mut header = parse_header(&mut p);
+    let h = parse_header(&mut p);
 
-    let beatmaps_number = header.beatmaps_number() as usize;
-    let beamaps = parse_beatmaps(&mut p, beatmaps_number);
+    let bms_num = h.beatmaps_number() as usize;
+    let bms = parse_beatmaps(&mut p, bms_num);
 
-    header.permissons_level = parse_perms_level(&mut p);
+    let pl = parse_perms_level(&mut p);
 
     if !p.is_finished() {
         panic!("Parser left some data unread");
     }
 
-    OsudbStructrure {
-        header: header,
-        beatmaps: beamaps,
+    Osudb {
+        header: h,
+        beatmaps: bms,
+        permissons_level: pl,
     }
 }
 
@@ -38,7 +40,6 @@ fn parse_header(p: &mut Parser) -> OsudbHeader {
         unlocked_date: p.get_datetime(),
         playername: p.get_string(),
         beatmaps_number: p.get_int(),
-        permissons_level: Default::default(),
     }
 }
 
