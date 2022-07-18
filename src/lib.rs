@@ -12,6 +12,8 @@ mod parser;
 fn read_header(path: String) -> PyResult<String> {
     let db = osudb::read(path);
     let h = db.header;
+
+    let bm = db.beatmaps.get(db.beatmaps.len() - 1).unwrap();
     let s = format!(
         "version: {}\nfolder_count: {}\naccount_unlocked: {}\nunlocked_date: {}\nplayername: {}\nbeatmaps_number: {}\npermissons_level: {}",
          h.version,
@@ -22,7 +24,9 @@ fn read_header(path: String) -> PyResult<String> {
          h.beatmaps_number,
          h.permissons_level
         );
-    Ok(s)
+    let s2 = format!("{} {} - {}", bm.id_beatmap, bm.artist, bm.title);
+    let r = format!("{}\n\n{}", s, s2);
+    Ok(r)
 }
 
 /// A Python module implemented in Rust.

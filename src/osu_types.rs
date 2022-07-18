@@ -17,3 +17,16 @@ pub use f64 as Double;
 pub use u8 as Bool;
 
 pub use u64 as DateTime;
+
+pub struct IntDoublePair {
+    pub flag: Byte,
+    pub int: Int,
+    pub flag2: Byte,
+    pub double: Double,
+}
+
+pub struct TimingPoint {
+    pub bpm: Double,
+    pub offset: Double,     // ms
+    pub is_inherited: Bool, // if false, then this timing point is inherited. See .osu (file format) for more information regarding timing points.
+}

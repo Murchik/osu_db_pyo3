@@ -1,141 +1,71 @@
 use crate::osu_types::*;
 
 pub struct BeatmapInfo {
-    artist: String,         // Artist name
-    atrist_unicode: String, // Artist name, in Unicode
-    title: String,          // Song title
-    title_unicode: String,  // Song title, in Unicode
-    author: String,         // Creator name
-    difficulty: String,     // Difficulty (e.g. Hard, Insane, etc.)
+    pub artist: String,         // Artist name
+    pub atrist_unicode: String, // Artist name, in Unicode
+    pub title: String,          // Song title
+    pub title_unicode: String,  // Song title, in Unicode
+    pub author: String,         // Creator name
+    pub difficulty: String,     // Difficulty (e.g. Hard, Insane, etc.)
 
-    audio_file: String, // Audio file name
-    hash: String,       // MD5 hash of the beatmap
+    pub audio_file: String, // Audio file name
+    pub hash: String,       // MD5 hash of the beatmap
 
-    osu_file: String, // Name of the .osu file corresponding to this beatmap
-    status: Byte, // Ranked status (0 = unknown, 1 = unsubmitted, 2 = pending/wip/graveyard, 3 = unused, 4 = ranked, 5 = approved, 6 = qualified, 7 = loved)
+    pub osu_file: String, // Name of the .osu file corresponding to this beatmap
+    pub status: Byte, // Ranked status (0 = unknown, 1 = unsubmitted, 2 = pending/wip/graveyard, 3 = unused, 4 = ranked, 5 = approved, 6 = qualified, 7 = loved)
 
-    hitcicrle_num: Short,
-    sliders_num: Short,
-    spinners_num: Short,
-    modification_time: Long, // Last modification time, Windows ticks
+    pub hitcicrle_num: Short,
+    pub sliders_num: Short,
+    pub spinners_num: Short,
+    pub modification_time: Long, // Last modification time, Windows ticks
 
-    ar: Single,
-    cs: Single,
-    hp: Single,
-    od: Single,
-    slider_velocity: Double,
-    // sr_std: Int-Double pair*
-    // sr_taiko: Int-Double pair*
-    // sr_ctb: Int-Double pair*
-    // sr_maina: Int-Double pair*
-    drain_time: Int,   // s
-    total_time: Int,   // ms
-    preview_time: Int, // ms
+    pub ar: Single,
+    pub cs: Single,
+    pub hp: Single,
+    pub od: Single,
+    pub slider_velocity: Double,
 
-    // timing_points_num: Timing point+
-    id_difficulty: Int,
-    id_beatmap: Int,
-    id_thread: Int,
+    pub sr_std: Vec<IntDoublePair>,
+    pub sr_taiko: Vec<IntDoublePair>,
+    pub sr_ctb: Vec<IntDoublePair>,
+    pub sr_maina: Vec<IntDoublePair>,
 
-    grade_std: Byte,
-    grade_taiko: Byte,
-    grade_ctb: Byte,
-    grade_mania: Byte,
+    pub drain_time: Int,   // s
+    pub total_time: Int,   // ms
+    pub preview_time: Int, // ms
 
-    offset_local: Short,
-    stack_leniency: Single, // wtf is this
+    pub timing_points_num: Vec<TimingPoint>,
+    pub id_difficulty: Int,
+    pub id_beatmap: Int,
+    pub id_thread: Int,
 
-    mode: Byte,
-    source: String, // Song source
-    tags: String,   // Song tags
+    pub grade_std: Byte,
+    pub grade_taiko: Byte,
+    pub grade_ctb: Byte,
+    pub grade_mania: Byte,
 
-    offset_online: Short,
-    font: String,      // Font used for the title of the song
-    is_unplayed: Bool, // Is beatmap unplayed
-    played_time: Long,
-    is_osz2: Bool,
-    folder_name: String,
+    pub offset_local: Short,
+    pub stack_leniency: Single, // wtf is this
 
-    checked_time: Long, // Last time when beatmap was checked against osu! repository
+    pub mode: Byte,
+    pub source: String, // Song source
+    pub tags: String,   // Song tags
 
-    is_ignore_sound: Bool,
-    is_ignore_skin: Bool,
-    is_ignore_storyboard: Bool,
-    is_ignore_video: Bool,
-    is_ignore_override: Bool,
+    pub offset_online: Short,
+    pub font: String,      // Font used for the title of the song
+    pub is_unplayed: Bool, // Is beatmap unplayed
+    pub played_time: Long,
+    pub is_osz2: Bool,
+    pub folder_name: String,
 
-    // modification_time: Int, // ???
-    mania_scroll_speed: Byte,
-}
+    pub checked_time: Long, // Last time when beatmap was checked against osu! repository
 
-impl Default for BeatmapInfo {
-    fn default() -> Self {
-        BeatmapInfo {
-            artist: Default::default(),         // Artist name
-            atrist_unicode: Default::default(), // Artist name, in Unicode
-            title: Default::default(),          // Song title
-            title_unicode: Default::default(),  // Song title, in Unicode
-            author: Default::default(),         // Creator name
-            difficulty: Default::default(),     // Difficulty (e.g. Hard, Insane, etc.)
+    pub is_ignore_sound: Bool,
+    pub is_ignore_skin: Bool,
+    pub is_ignore_storyboard: Bool,
+    pub is_ignore_video: Bool,
+    pub is_ignore_override: Bool,
 
-            audio_file: Default::default(), // Audio file name
-            hash: Default::default(),       // MD5 hash of the beatmap
-
-            osu_file: Default::default(), // Name of the .osu file corresponding to this beatmap
-            status: Default::default(), // Ranked status (0 = unknown, 1 = unsubmitted, 2 = pending/wip/graveyard, 3 = unused, 4 = ranked, 5 = approved, 6 = qualified, 7 = loved)
-
-            hitcicrle_num: Default::default(),
-            sliders_num: Default::default(),
-            spinners_num: Default::default(),
-            modification_time: Default::default(), // Last modification time, Windows ticks
-
-            ar: Default::default(),
-            cs: Default::default(),
-            hp: Default::default(),
-            od: Default::default(),
-            slider_velocity: Default::default(),
-            // sr_std: Int-Double pair*
-            // sr_taiko: Int-Double pair*
-            // sr_ctb: Int-Double pair*
-            // sr_maina: Int-Double pair*
-            drain_time: Default::default(),   // s
-            total_time: Default::default(),   // ms
-            preview_time: Default::default(), // ms
-
-            // timing_points_num: Timing point+
-            id_difficulty: Default::default(),
-            id_beatmap: Default::default(),
-            id_thread: Default::default(),
-
-            grade_std: Default::default(),
-            grade_taiko: Default::default(),
-            grade_ctb: Default::default(),
-            grade_mania: Default::default(),
-
-            offset_local: Default::default(),
-            stack_leniency: Default::default(), // wtf is this
-
-            mode: Default::default(),
-            source: Default::default(), // Song source
-            tags: Default::default(),   // Song tags
-
-            offset_online: Default::default(),
-            font: Default::default(), // Font used for the title of the song
-            is_unplayed: Default::default(), // Is beatmap unplayed
-            played_time: Default::default(),
-            is_osz2: Default::default(),
-            folder_name: Default::default(),
-
-            checked_time: Default::default(), // Last time when beatmap was checked against osu! repository
-
-            is_ignore_sound: Default::default(),
-            is_ignore_skin: Default::default(),
-            is_ignore_storyboard: Default::default(),
-            is_ignore_video: Default::default(),
-            is_ignore_override: Default::default(),
-
-            // modification_time: Int, // ???
-            mania_scroll_speed: Default::default(),
-        }
-    }
+    pub unknown_int: Int, // Last modification time (?)
+    pub mania_scroll_speed: Byte,
 }

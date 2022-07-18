@@ -9,4 +9,5 @@ name = "osu_db_pyo3"
 crate-type = ["cdylib"]
 
 [dependencies]
+nano-leb128 = "0.1.0"
 pyo3 = { version = "0.16.5", features = ["extension-module"] }
